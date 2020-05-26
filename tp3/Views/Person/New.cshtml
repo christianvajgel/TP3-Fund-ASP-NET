@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "New";
+}
+
+@model Person
+
+<h1>Add a new person</h1>
+
+@using (Html.BeginForm(actionName: "Save", controllerName: "Person", FormMethod.Post))
+{
+
+<div class="form-group">
+
+    <label for="personFirstName">First name:</label>
+    @Html.TextBoxFor(x => x.FirstName)
+    @Html.ValidationMessageFor(x => x.FirstName)
+
+    <label for="personSurname">Surname:</label>
+    @Html.TextBoxFor(x => x.Surname)
+    @Html.ValidationMessageFor(x => x.Surname)
+
+    <label for="personBirthday">Birthday:</label>
+    @Html.TextBoxFor(x => x.Birthday)
+    @Html.ValidationMessageFor(x => x.Birthday)
+
+</div>
+    
+    <button type="submit" class="btn btn-dark">Submit</button>
+
+}

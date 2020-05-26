@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>People</h1>
+
+@model List<Person>
+
+<table width="100%" border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Birthday</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.Id</td>
+                <td>@person.FirstName @person.Surname</td>
+                <td>@person.Birthday</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<div>
+    <a class="btn btn-dark" asp-controller="Person" asp-action="New">New Person</a>
+</div>
