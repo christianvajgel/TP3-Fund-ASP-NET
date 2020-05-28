@@ -1,17 +1,17 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Search";
 }
 
-<h1>People</h1>
+<h1>Search for people</h1>
 
 @if (!String.IsNullOrEmpty(ViewBag.Message))
 {
 
-<div class="alert @ViewBag.Type" role="alert" id="divAlert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <strong>Success!</strong> @ViewBag.Message
-</div>
+    <div class="alert @ViewBag.Type" role="alert" id="divAlert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Success!</strong> @ViewBag.Message
+    </div>
 
     <script>
         window.setTimeout(function () {
@@ -24,6 +24,10 @@
 }
 
 @model List<Person>
+
+<div>
+    
+</div>
 
 <table width="100%" border="1">
     <thead>

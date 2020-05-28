@@ -10,9 +10,11 @@ namespace tp3.Controllers
     public class PersonController : Controller
     {
         public static List<Person> People { get; set; } = new List<Person>();
-        public static int id = 0;
-        public IActionResult Index()
+
+        public IActionResult Index(string? message, string? type)
         {
+            ViewBag.message = message;
+            ViewBag.type = type;
             return View(People);
         }
 
@@ -21,20 +23,49 @@ namespace tp3.Controllers
             return View();
         }
 
+        public IActionResult Update([FromQuery] Guid id)
+        {
+            var person = People.Where(x => x.Id == id).FirstOrDefault();
+            return View(person);
+        }
+
         [HttpPost]
         public IActionResult Save(Person model)
         {
-            model.Id = id;
+            if (!ModelState.IsValid) { return View(); }
+            model.Id = Guid.NewGuid();
             People.Add(model);
-            id++;
-            return RedirectToAction("Index", "Person");
+            return RedirectToAction("Index", "Person", new { message = "Person added.", type = "alert-success" });
         }
 
-        [HttpPut]
-        public IActionResult Update(Person model)
+        [HttpPost]
+        public IActionResult SaveUpdate(Guid id, Person model)
+        {
+            if (!ModelState.IsValid) { return View(); }
+
+            var updatedPerson = People.Where(x => x.Id == id).FirstOrDefault();
+            updatedPerson.FirstName = model.FirstName;
+            updatedPerson.Surname = model.Surname;
+            updatedPerson.Birthday = model.Birthday;
+
+            People.Remove(updatedPerson);
+            People.Add(updatedPerson);
+
+            return RedirectToAction("Index", "Person", new { message = "Person edited.", type = "alert-warning" });
+        }
+
+        public IActionResult Delete([FromQuery] Guid id)
+        {
+            var person = People.Where(x => x.Id == id).FirstOrDefault();
+            People.Remove(person);
+            return RedirectToAction("Index", "Person", new { message = "Person deleted.", type = "alert-danger" });
+        }
+
+        public List<Person> SearchFor() 
         {
 
-            return View();
+
+            return null;
         }
     }
 }

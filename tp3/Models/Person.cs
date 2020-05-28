@@ -8,7 +8,7 @@ namespace tp3.Models
 {
     public class Person
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessage = "The person must have a first name.")]
         public string FirstName { get; set; }

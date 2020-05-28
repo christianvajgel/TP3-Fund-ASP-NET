@@ -23,8 +23,7 @@ namespace tp3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddRazorPages().AddRazorRuntimeCompilation(); // *********************************************** 
+            services.AddControllersWithViews().AddRazorRuntimeCompilation(); // *********************************************** 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,10 +51,7 @@ namespace tp3
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                    name: "update",
-                    pattern: "{controller=Person}/{action=Update}/{id?}");
+                    pattern: "{controller=Person}/{action=Index}/{id?}");
             });
         }
     }

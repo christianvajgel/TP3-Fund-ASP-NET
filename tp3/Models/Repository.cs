@@ -15,21 +15,21 @@ namespace tp3.Models
                 person.Surname.Contains(termSurname, StringComparison.InvariantCultureIgnoreCase));
         }
 
-        public static Person SearchPerson(List<Person> people, int id)
-        {
-            var PersonObject = new Person();
-            foreach (var match in people)
-            {
-                if (match.Id == id) { PersonObject = people[match.Id]; }
-            }
-            return PersonObject;
-        }
+        //public static Person SearchPerson(List<Person> people, int id)
+        //{
+        //    var PersonObject = new Person();
+        //    foreach (var match in people)
+        //    {
+        //        if (match.Id == id) { PersonObject = people[match.Id]; }
+        //    }
+        //    return PersonObject;
+        //}
 
-        public static string PersonFullName(List<Person> people, string id)
-        {
-            var person = SearchPerson(people, Parsing.StringToInt(id)[0]);
-            return $"{person.FirstName} {person.Surname}";
-        }
+        //public static string PersonFullName(List<Person> people, string id)
+        //{
+        //    var person = SearchPerson(people, Parsing.StringToInt(id)[0]);
+        //    return $"{person.FirstName} {person.Surname}";
+        //}
 
         public static string UpdatePerson(List<Person> people, Person person, Person updated)
         {
