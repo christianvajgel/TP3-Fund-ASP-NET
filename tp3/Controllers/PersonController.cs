@@ -10,6 +10,7 @@ namespace tp3.Controllers
     public class PersonController : Controller
     {
         public static List<Person> People { get; set; } = new List<Person>();
+        public static IEnumerable<Person> ResultList;
 
         public IActionResult Index(string? message, string? type)
         {
@@ -61,11 +62,30 @@ namespace tp3.Controllers
             return RedirectToAction("Index", "Person", new { message = "Person deleted.", type = "alert-danger" });
         }
 
-        public List<Person> SearchFor() 
+        public IActionResult Search() 
         {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult SearchPeople(Person model) 
+        {
+            ResultList = SearchFor(model.FirstName, model.Surname);
+            return RedirectToAction("Result","Person", new { message = $"Found {ResultList.Count()} contact(s)", type = "alert-dark" });
+        }
 
-            return null;
+        public IEnumerable<Person> SearchFor(string termFirstName, string termSurname) 
+        {
+            return People.Where(person =>
+                person.FirstName.Contains(termFirstName, StringComparison.InvariantCultureIgnoreCase) ||
+                person.Surname.Contains(termSurname, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public IActionResult Result(string? message, string? type)
+        {
+            ViewBag.message = message;
+            ViewBag.type = type;
+            return View(ResultList);
         }
     }
 }

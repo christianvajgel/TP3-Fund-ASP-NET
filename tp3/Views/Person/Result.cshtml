@@ -1,9 +1,9 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Result";
 }
 
-<h1>People</h1>
+<h1>Result</h1>
 
 @if (!String.IsNullOrEmpty(ViewBag.Message))
 {
@@ -23,7 +23,7 @@
 
 }
 
-@model List<Person>
+@model IEnumerable<Person>
 
 <table width="100%" border="1">
     <thead>
@@ -31,7 +31,6 @@
             <th>ID</th>
             <th>Name</th>
             <th>Birthday</th>
-            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -41,15 +40,11 @@
                 <td>@person.Id</td>
                 <td>@person.FirstName @person.Surname</td>
                 <td>@person.Birthday.ToShortDateString()</td>
-                <td>
-                    <a class="btn btn-warning btn-sm" href="/Person/Update?id=@person.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" href="/Person/Delete?id=@person.Id">Delete</a>
-                </td>
             </tr>
         }
     </tbody>
 </table>
 <br />
 <div>
-    <a class="btn btn-dark" asp-controller="Person" asp-action="New">New Person</a>
+    <a class="btn btn-dark" asp-controller="Person" asp-action="Index">Home</a>
 </div>

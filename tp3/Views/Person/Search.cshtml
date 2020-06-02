@@ -18,42 +18,28 @@
             $(".alert").fadeTo(500, 0).slideUp(500, function () {
                 $(this).remove();
             });
-        }, 2000);
+        }, 3000);
     </script>
 
 }
 
-@model List<Person>
+@model Person
 
 <div>
     
 </div>
 
-<table width="100%" border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Birthday</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var person in Model)
-        {
-            <tr>
-                <td>@person.Id</td>
-                <td>@person.FirstName @person.Surname</td>
-                <td>@person.Birthday</td>
-                <td>
-                    <a class="btn btn-warning btn-sm" href="/Person/Update?id=@person.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" href="/Person/Delete?id=@person.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<br />
-<div>
-    <a class="btn btn-dark" asp-controller="Person" asp-action="New">New Person</a>
-</div>
+<form method="post" asp-action="SearchPeople" asp-controller="Person">
+
+    <div class="form-group">
+        <label for="textFirstName">First name:</label>
+        <input type="text" asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+
+        <label for="textSurname">Surname:</label>
+        <input type="text" asp-for="Surname" />
+        <span asp-validation-for="Surname"></span>
+    </div>
+
+    <button type="submit" class="btn btn-outline-dark btn-sm">Submit</button>
+</form>

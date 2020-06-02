@@ -17,6 +17,6 @@ namespace tp3.Models
         public string Surname { get; set; }
 
         [Required(ErrorMessage = "The person must have a birthdate.")]
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
     }
 }
